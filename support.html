@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Support — Asahi Fans Appliances</title>
+  <link rel="stylesheet" type="text/css" href="css/styles.css"/>
+  <style>
+    .support-wrapper {
+      max-width: 900px;
+      margin: 40px auto 80px;
+      padding: 0 24px;
+    }
+
+    .support-header-banner {
+      text-align: center;
+      margin-bottom: 50px;
+      position: relative;
+    }
+
+    .support-fan-stage {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 15px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .support-fan-stage:hover { transform: scale(1.08); }
+
+    .support-fan-head {
+      width: 90px;
+      height: 90px;
+      border: 4px solid #064f9e;
+      border-radius: 50%;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.85);
+      box-shadow: 0 8px 24px rgba(6, 79, 158, 0.2);
+      backdrop-filter: blur(4px);
+    }
+
+    .support-fan-blades {
+      width: 70px;
+      height: 70px;
+      position: absolute;
+      animation: spinBlades 2.5s linear infinite;
+      transition: animation-duration 0.4s ease;
+    }
+
+    .support-fan-blades span {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 32px;
+      height: 18px;
+      background: linear-gradient(135deg, #064f9e, #073b72);
+      border-radius: 40% 90% 20% 80%;
+      transform-origin: 0% 50%;
+      box-shadow: 0 2px 6px rgba(7, 59, 114, 0.3);
+    }
+
+    .support-fan-blades span:nth-child(1) { transform: translateY(-50%) rotate(0deg); }
+    .support-fan-blades span:nth-child(2) { transform: translateY(-50%) rotate(120deg); }
+    .support-fan-blades span:nth-child(3) { transform: translateY(-50%) rotate(240deg); }
+
+    .support-fan-cap {
+      width: 18px;
+      height: 18px;
+      background: #073b72;
+      border-radius: 50%;
+      z-index: 2;
+      border: 2px solid white;
+    }
+
+    @keyframes spinBlades { to { transform: rotate(360deg); } }
+
+    .fan-speed-controls {
+      display: inline-flex;
+      gap: 6px;
+      background: #eef4fb;
+      padding: 4px;
+      border-radius: 20px;
+      margin-bottom: 24px;
+      border: 1px solid #d0e0f2;
+    }
+
+    .speed-btn {
+      border: none;
+      background: transparent;
+      padding: 4px 12px;
+      border-radius: 14px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #073b72;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .speed-btn.active {
+      background: #064f9e;
+      color: white;
+      box-shadow: 0 2px 8px rgba(6, 79, 158, 0.3);
+    }
+
+    .wind-particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .wind-line {
+      position: absolute;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(6, 79, 158, 0.4), transparent);
+      border-radius: 2px;
+      opacity: 0;
+    }
+
+    .wind-active .wind-line {
+      animation: blowWind 1.2s infinite linear;
+    }
+
+    @keyframes blowWind {
+      0% { transform: translateX(-100px); opacity: 0; }
+      50% { opacity: 1; }
+      100% { transform: translateX(400px); opacity: 0; }
+    }
+
+    .support-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+
+    .support-card {
+      background: #ffffff;
+      border: 1px solid #e0e6ed;
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: 0 4px 16px rgba(20, 48, 75, 0.04);
+      transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+
+    .support-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 28px rgba(6, 79, 158, 0.1);
+      border-color: #c5d9ed;
+    }
+
+    .support-card h3 {
+      margin: 0 0 20px;
+      color: #073b72;
+      font-size: 18px;
+    }
+
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .faq-item {
+      border: 1px solid #e8eef5;
+      border-radius: 8px;
+      background: #f8fafc;
+      overflow: hidden;
+      transition: all 0.25s ease;
+    }
+
+    .faq-item:hover { border-color: #b0cced; }
+
+    .faq-item[open] {
+      border-color: #064f9e;
+      background: #ffffff;
+      box-shadow: 0 4px 12px rgba(6, 79, 158, 0.06);
+    }
+
+    .faq-item summary {
+      padding: 14px 16px;
+      font-weight: 600;
+      font-size: 14px;
+      color: #14304b;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .faq-item summary::-webkit-details-marker { display: none; }
+
+    .faq-item summary::after {
+      content: '+';
+      font-size: 16px;
+      color: #064f9e;
+      transition: transform 0.3s ease;
+    }
+
+    .faq-item[open] summary::after {
+      content: '−';
+      transform: rotate(180deg);
+    }
+
+    .faq-item p {
+      margin: 0;
+      padding: 0 16px 16px;
+      color: #5a6e85;
+      font-size: 13px;
+      line-height: 1.6;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .support-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-group label {
+      font-size: 12px;
+      font-weight: 700;
+      color: #073b72;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1px solid #dcdfe4;
+      border-radius: 6px;
+      font-size: 13px;
+      box-sizing: border-box;
+      outline: none;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.15s ease;
+      color-scheme: light !important;
+      background-color: #ffffff !important;
+      color: #000000 !important;
+      caret-color: #000000 !important;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: #064f9e;
+      box-shadow: 0 0 0 4px rgba(6, 79, 158, 0.15);
+      transform: scale(1.01);
+    }
+
+    .send-btn {
+      background: linear-gradient(135deg, #064f9e, #073b72);
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+      box-shadow: 0 4px 12px rgba(6, 79, 158, 0.25);
+    }
+
+    .send-btn:hover {
+      transform: translateY(-2deg) scale(1.02);
+      box-shadow: 0 6px 18px rgba(6, 79, 158, 0.35);
+    }
+
+    @media (max-width: 768px) {
+      .support-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <a href="index.html" class="logo">
+      <span>Asahi</span>
+      <small>FANS APPLIANCES</small>
+    </a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="support.html" class="active">Support</a>
+    </nav>
+  </header>
+
+  <main class="support-wrapper" id="supportWrapper">
+    <div class="support-header-banner">
+      <div class="support-fan-stage">
+        <div class="support-fan-head">
+          <div class="support-fan-blades" id="fanBlades">
+            <span></span><span></span><span></span>
+          </div>
+          <div class="support-fan-cap"></div>
+        </div>
+      </div>
+
+      <div class="fan-speed-controls">
+        <button class="speed-btn" onclick="setFanSpeed('off', this)">OFF</button>
+        <button class="speed-btn" onclick="setFanSpeed('low', this)">LOW</button>
+        <button class="speed-btn active" onclick="setFanSpeed('med', this)">MED</button>
+        <button class="speed-btn" onclick="setFanSpeed('high', this)">HIGH</button>
+      </div>
+
+      <div class="wind-particles wind-active" id="windStage">
+        <div class="wind-line" style="top: 20%; left: 10%; width: 120px; animation-delay: 0s;"></div>
+        <div class="wind-line" style="top: 45%; left: 5%; width: 180px; animation-delay: 0.3s;"></div>
+        <div class="wind-line" style="top: 70%; left: 15%; width: 90px; animation-delay: 0.6s;"></div>
+      </div>
+
+      <p class="eyebrow" style="color: #064f9e; font-weight: 700; letter-spacing: 1px;">CUSTOMER CARE & REPAIR</p>
+      <h1 style="font-size: 36px; color: #073b72; margin: 8px 0 12px;">We're Here to Help Keep You Cool</h1>
+      <p style="color: #5a6e85; margin: 0;">Explore warranty policies, maintenance tutorials, or reach out to our service center.</p>
+    </div>
+
+    <div class="support-grid">
+      <div class="support-card">
+        <h3>Frequently Asked Questions</h3>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>What warranty covers my Asahi fan?</summary>
+            <p>All Asahi appliances come with a standard 1-year warranty covering motor parts and manufacturing defects. Keep your purchase receipt for processing.</p>
+          </details>
+
+          <details class="faq-item">
+            <summary>How do I clean and reassemble fan blades?</summary>
+            <p>Unplug the fan, unclip the front safety grille, wipe the blades with a soft microfiber cloth, and securely re-lock the grille frame.</p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Why is my fan oscillation screeching or lagging?</summary>
+            <p>Dust can collect inside the rear oscillation pin. Applying 1-2 drops of silicone lubricant to the neck pivot pin will restore smooth movement.</p>
+          </details>
+        </div>
+      </div>
+
+      <div class="support-card">
+        <h3>Submit a Service Ticket</h3>
+        <form class="support-form" id="ticketForm">
+          <div class="form-group">
+            <label for="ticketName">Full Name</label>
+            <input type="text" id="ticketName" placeholder="John Doe" required>
+          </div>
+          <div class="form-group">
+            <label for="ticketEmail">Email Address</label>
+            <input type="email" id="ticketEmail" placeholder="john@example.com" required>
+          </div>
+          <div class="form-group">
+            <label for="ticketIssue">Inquiry Type</label>
+            <select id="ticketIssue">
+              <option value="warranty">Warranty & Repairs</option>
+              <option value="parts">Replacement Parts</option>
+              <option value="general">General Support</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="ticketMessage">Message</label>
+            <textarea id="ticketMessage" rows="4" placeholder="Describe your product issue..." required></textarea>
+          </div>
+          <button type="submit" class="send-btn">Send Support Ticket 💨</button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="logo"><span>Asahi</span><small>FANS APPLIANCES</small></div>
+    <p>© 2026 Asahi Fan Showroom Concept</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    const fanBlades = document.getElementById('fanBlades');
+    const windStage = document.getElementById('windStage');
+    const messageInput = document.getElementById('ticketMessage');
+    const form = document.getElementById('ticketForm');
+
+    function setFanSpeed(speed, btn) {
+      document.querySelectorAll('.speed-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+
+      if (speed === 'off') {
+        fanBlades.style.animationPlayState = 'paused';
+        windStage.classList.remove('wind-active');
+      } else {
+        fanBlades.style.animationPlayState = 'running';
+        windStage.classList.add('wind-active');
+        if (speed === 'low') fanBlades.style.animationDuration = '4s';
+        if (speed === 'med') fanBlades.style.animationDuration = '2s';
+        if (speed === 'high') fanBlades.style.animationDuration = '0.4s';
+      }
+    }
+
+    messageInput.addEventListener('input', () => {
+      fanBlades.style.animationDuration = '0.2s';
+      windStage.classList.add('wind-active');
+      clearTimeout(window.typingTimer);
+      window.typingTimer = setTimeout(() => {
+        const activeBtn = document.querySelector('.speed-btn.active');
+        const currentSpeed = activeBtn ? activeBtn.innerText.toLowerCase() : 'med';
+        setFanSpeed(currentSpeed, activeBtn);
+      }, 1000);
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      fanBlades.style.animationDuration = '0.15s';
+      setTimeout(() => {
+        alert('Your support ticket has been sent successfully!');
+        setFanSpeed('med', document.querySelectorAll('.speed-btn')[2]);
+        form.reset();
+      }, 500);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Asahi Fans Appliances — Interactive Fan Showroom</title>
+  <link rel="stylesheet" type="text/css" href="css/styles.css"/>
+</head>
+<body>
+ 
+  <div id="homePage" class="page">
+    <header class="site-header">
+      <a href="index.html" class="logo" id="homeLogo">
+        <span>Asahi</span>
+        <small>FANS APPLIANCES</small>
+      </a>
+
+      <nav>
+        <a href="index.html" class="active">Home</a>
+        <a href="#categories">Products</a>
+        <a href="about.html">About Us</a>
+        <a href="support.html">Support</a>
+      </nav>
+
+      <div class="header-icons">
+        <button aria-label="Search">⌕</button>
+        <button aria-label="Cart">🛒</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">INTERACTIVE FAN SHOWROOM</p>
+          <h1>Cool Comfort,<br>Everyday.</h1>
+          <p>Explore fan designs for different spaces, then let the fan itself blow you through its product information.</p>
+          <a href="#categories" class="primary-button">Choose Your Fan</a>
+        </div>
+
+        <div class="hero-fans">
+          <div class="hero-fan stand oscillate">
+            <div class="fan-head">
+              <div class="fan-grille-front"></div>
+              <div class="fan-blades">
+                <span class="blade3"></span>
+              </div>
+              <div class="fan-center"><div class="badge">ASAHI</div></div>
+            </div>
+            <div class="fan-neck"></div>
+            <div class="fan-pole"></div>
+            <div class="fan-base"></div>
+          </div>
+
+          <div class="hero-fan desk oscillate">
+            <div class="fan-head">
+              <div class="fan-grille-front"></div>
+              <div class="fan-blades">
+                <span class="blade3"></span>
+              </div>
+              <div class="fan-center"><div class="badge">ASAHI</div></div>
+            </div>
+            <div class="fan-neck"></div>
+            <div class="fan-base"></div>
+          </div>
+
+          <div class="hero-ceiling">
+            <div class="ceiling-rod"></div>
+            <div class="ceiling-motor">
+              <div class="motor-cap"></div>
+            </div>
+            <div class="ceiling-blades"><i></i><i></i><i></i></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="trust-strip">
+        <div>◈ <strong>Durable</strong><span>Built for everyday use</span></div>
+        <div>♧ <strong>Energy Aware</strong><span>Designed with efficiency in mind</span></div>
+        <div>◇ <strong>Trusted Quality</strong><span>Demo showroom concept</span></div>
+      </section>
+
+      <section id="about" class="intro-section">
+        <p class="eyebrow">ABOUT THE SHOWROOM</p>
+        <h2>A fan that does more than cool.</h2>
+        <p>This interactive showroom allows you to browse products visually. Choose a fan, explore its features, and experience a wind-powered transition when navigating specs.</p>
+      </section>
+
+      <section id="categories" class="catalog-section">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">FAN TYPES</p>
+            <h2>Choose your fan</h2>
+          </div>
+          <p id="categoryHint">Find the right style for your space.</p>
+        </div>
+
+        <div class="category-buttons" id="categoryButtons"></div>
+        <div class="products-grid" id="productsGrid"></div>
+      </section>
+    </main>
+
+    <footer id="footer">
+      <div class="logo"><span>Asahi</span><small>FANS APPLIANCES</small></div>
+      <p>Interactive showroom demo — product details are sample information for this concept project.</p>
+      <p>© 2026 Asahi Fan Showroom Concept</p>
+    </footer>
+  </div>
+
+  <div id="productPage" class="product-page hidden">
+    <header class="product-header">
+      <a href="index.html" class="logo" id="productLogo">
+        <span>Asahi</span>
+        <small>FANS APPLIANCES</small>
+      </a>
+      <div class="product-title" id="productTitle">FAN</div>
+      <button class="back-button" id="backButton">← Back to Products</button>
+    </header>
+
+    <main class="product-layout">
+      <section class="fan-area">
+        <p class="fan-label">YOUR FAN</p>
+        
+        <div id="selectedFan" class="css-fan stand">
+          <div class="fan-head">
+            <div class="fan-grille-back"></div>
+            <div class="fan-blades"></div>
+            <div class="fan-grille-front"></div>
+            <div class="fan-center"><div class="badge">ASAHI</div></div>
+          </div>
+          <div class="fan-neck"></div>
+          <div class="fan-pole"></div>
+          <div class="fan-base"></div>
+        </div>
+
+        <div class="wind" id="wind">
+          <span></span><span></span><span></span><span></span><span></span>
+          <b>·</b><b>·</b><b>·</b><b>·</b><b>·</b>
+        </div>
+
+        <div class="fan-status" id="fanStatus">IDLE • READY</div>
+      </section>
+
+      <section class="information-area">
+        <div class="info-top">
+          <p class="eyebrow">PRODUCT INFORMATION</p>
+          <h1 id="infoHeading">Description</h1>
+        </div>
+
+        <nav class="info-nav" aria-label="Product information">
+          <button class="info-button active" data-section="description">Description</button>
+          <button class="info-button" data-section="features">Features</button>
+          <button class="info-button" data-section="materials">Materials</button>
+          <button class="info-button" data-section="specifications">Specifications</button>
+        </nav>
+
+        <div class="info-stage" id="infoStage">
+          <article class="info-panel active" id="infoPanel"></article>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

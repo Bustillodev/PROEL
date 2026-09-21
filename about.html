@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us — Asahi Fans Appliances</title>
+  <link rel="stylesheet" type="text/css" href="css/styles.css"/>
+  <style>
+    .section-container {
+      width: min(1180px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    .about-hero {
+      position: relative;
+      background: linear-gradient(135deg, #073b72 0%, #064f9e 100%);
+      color: white;
+      padding: 80px 40px;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-top: 20px;
+      box-shadow: 0 12px 30px rgba(6, 79, 158, 0.2);
+    }
+
+    .about-hero .wind-trail {
+      position: absolute;
+      height: 2px;
+      background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.7), rgba(255,255,255,0));
+      width: 35%;
+      pointer-events: none;
+      animation: windFlow 3s linear infinite;
+    }
+    .about-hero .wind-trail:nth-child(1) { top: 25%; left: -35%; animation-delay: 0s; }
+    .about-hero .wind-trail:nth-child(2) { top: 55%; left: -35%; animation-delay: 1.2s; }
+    .about-hero .wind-trail:nth-child(3) { top: 80%; left: -35%; animation-delay: 0.6s; }
+
+    @keyframes windFlow {
+      0% { transform: translateX(0); opacity: 0; }
+      30% { opacity: 1; }
+      100% { transform: translateX(450%); opacity: 0; }
+    }
+
+    .rotor-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      margin: 50px 0;
+      padding: 40px;
+      background: #ffffff;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s ease;
+    }
+
+    .rotor-container:hover { transform: translateY(-3px); }
+
+    .mini-impeller {
+      width: 100px;
+      height: 100px;
+      position: relative;
+      border-radius: 50%;
+      background: radial-gradient(circle, #064f9e 20%, transparent 21%);
+    }
+
+    .mini-impeller .blade-group {
+      width: 100%;
+      height: 100%;
+      animation: impellerSpin 4s linear infinite;
+      transform-origin: center center;
+    }
+
+    .mini-impeller .blade-group span {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 42px;
+      height: 22px;
+      background: linear-gradient(135deg, #064f9e, #073b72);
+      border-radius: 40% 90% 20% 80%;
+      transform-origin: 0% 50%;
+    }
+
+    .mini-impeller .blade-group span:nth-child(1) { transform: translateY(-50%) rotate(0deg); }
+    .mini-impeller .blade-group span:nth-child(2) { transform: translateY(-50%) rotate(120deg); }
+    .mini-impeller .blade-group span:nth-child(3) { transform: translateY(-50%) rotate(240deg); }
+
+    .rotor-container:hover .mini-impeller .blade-group {
+      animation-duration: 0.4s;
+    }
+
+    @keyframes impellerSpin { to { transform: rotate(360deg); } }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .blade-card {
+      position: relative;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 12px 40px 12px 40px;
+      padding: 34px;
+      box-shadow: 0 6px 20px rgba(20,48,75,0.05);
+      transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .blade-card .card-icon {
+      font-size: 36px;
+      margin-bottom: 12px;
+      display: inline-block;
+      transition: transform 0.4s ease;
+    }
+
+    .blade-card:hover {
+      transform: translateY(-8px) rotate(-1deg);
+      border-color: var(--blue);
+      box-shadow: 0 16px 32px rgba(6, 79, 158, 0.12);
+    }
+
+    .blade-card:hover .card-icon {
+      transform: rotate(360deg) scale(1.15);
+    }
+
+    @media (max-width: 768px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .rotor-container { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <a href="index.html" class="logo">
+      <span>Asahi</span>
+      <small>FANS APPLIANCES</small>
+    </a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html" class="active">About Us</a>
+      <a href="support.html">Support</a>
+    </nav>
+  </header>
+
+  <main class="section-container">
+    <section class="about-hero">
+      <div class="wind-trail"></div>
+      <div class="wind-trail"></div>
+      <div class="wind-trail"></div>
+      
+      <p class="eyebrow" style="color: #67b8ed;">OUR HERITAGE</p>
+      <h1 style="font-size: 48px; margin: 10px 0 16px;">Engineered for Pure Airflow</h1>
+      <p style="max-width: 560px; line-height: 1.6; color: #eaf5ff;">
+        Since our inception, Asahi Fans Appliances has integrated sleek aesthetic engineering with high-velocity airflow mechanics to create comfortable micro-climates inside every home.
+      </p>
+    </section>
+
+    <section class="rotor-container">
+      <div class="mini-impeller">
+        <div class="blade-group">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+      <div>
+        <h3 style="margin: 0 0 8px; color: var(--blue-dark); font-size: 20px;">Hover to Boost Airflow</h3>
+        <p style="margin: 0; color: var(--muted); font-size: 13px; max-width: 500px; line-height: 1.6;">
+          Our aerodynamic impellers optimize pitch angles to yield maximum CFM (Cubic Feet per Minute) while eliminating low-frequency motor hum.
+        </p>
+      </div>
+    </section>
+
+    <section class="about-grid" style="margin-bottom: 80px;">
+      <div class="blade-card">
+        <div class="card-icon">💨</div>
+        <h3 style="color: var(--blue-dark); margin: 0 0 8px;">High Velocity</h3>
+        <p style="color: var(--muted); font-size: 13px; line-height: 1.6; margin: 0;">
+          Balanced steel-core rotors ensure maximum air displacement with low thermal resistance.
+        </p>
+      </div>
+
+      <div class="blade-card">
+        <div class="card-icon">🔇</div>
+        <h3 style="color: var(--blue-dark); margin: 0 0 8px;">Whisper Drive</h3>
+        <p style="color: var(--muted); font-size: 13px; line-height: 1.6; margin: 0;">
+          Custom sleeve-bearing assemblies minimize internal friction for quiet nighttime operation.
+        </p>
+      </div>
+
+      <div class="blade-card">
+        <div class="card-icon">⚡</div>
+        <h3 style="color: var(--blue-dark); margin: 0 0 8px;">Eco Efficiency</h3>
+        <p style="color: var(--muted); font-size: 13px; line-height: 1.6; margin: 0;">
+          Low-wattage copper winding motors deliver maximum airflow while reducing overall energy draw.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="logo"><span>Asahi</span><small>FANS APPLIANCES</small></div>
+    <p>© 2026 Asahi Fan Showroom Concept</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
